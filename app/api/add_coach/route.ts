@@ -1,9 +1,15 @@
 import { prisma } from "@/utils/prisma";
 import { NextResponse } from "next/server";
 
+type Props = {
+  coach_number: string;
+  coach_type: string;
+  base: string;
+  rake_type: string;
+};
+
 export async function POST(req: Request) {
-  const { values } = await req.json();
-  console.log("values", values);
+  const { values }: { values: Props } = await req.json();
 
   const isPresent = await prisma.coaches.findFirst({
     where: {
@@ -28,67 +34,25 @@ export async function POST(req: Request) {
     });
   } else {
     try {
-      switch (values.rake_type) {
-        case "SG":
-          await prisma.coaches.create({
-            data: {
-              base: values.base,
-              coach_number: values.coach_number,
-              coach_type: values.coach_type,
-              rake_type: values.rake_type,
+      const coachTypes: { [key: string]: string } = {
+        SG: "SGCoaches",
+        LHB: "LHBCoaches",
+        GR: "GRCoaches",
+        default: "PowerCoaches",
+      };
 
-              SGCoaches: { create: {} },
-            },
-          });
-          break;
-        case "LHB":
-          await prisma.coaches.create({
-            data: {
-              base: values.base,
-              coach_number: values.coach_number,
-              coach_type: values.coach_type,
-              rake_type: values.rake_type,
+      const coachType = coachTypes[values.rake_type] || coachTypes.default;
 
-              LHBCoaches: { create: {} },
-            },
-          });
-          break;
-        case "GR":
-          await prisma.coaches.create({
-            data: {
-              base: values.base,
-              coach_number: values.coach_number,
-              coach_type: values.coach_type,
-              rake_type: values.rake_type,
+      await prisma.coaches.create({
+        data: {
+          base: values.base,
+          coach_number: values.coach_number,
+          coach_type: values.coach_type,
+          rake_type: values.rake_type,
+          [coachType]: { create: {} },
+        },
+      });
 
-              GRCoaches: { create: {} },
-            },
-          });
-          break;
-        case "PANTRY":
-          await prisma.coaches.create({
-            data: {
-              base: values.base,
-              coach_number: values.coach_number,
-              coach_type: values.coach_type,
-              rake_type: values.rake_type,
-
-              PantryCoaches: { create: {} },
-            },
-          });
-          break;
-        default:
-          await prisma.coaches.create({
-            data: {
-              base: values.base,
-              coach_number: values.coach_number,
-              coach_type: values.coach_type,
-              rake_type: values.rake_type,
-
-              PowerCoaches: { create: {} },
-            },
-          });
-      }
       return NextResponse.json({ success: true });
     } catch {
       return NextResponse.json({

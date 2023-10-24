@@ -1,10 +1,10 @@
 import Link from "next/link";
 
-function Navbar() {
+export default function Navbar() {
   return (
     <div className="navbar bg-base-100 shadow-md">
       <div className="flex-1">
-        <Link href={"/"} className="btn btn-ghost normal-case text-xl">
+        <Link href={"/"} as="/" className="btn btn-ghost normal-case text-xl">
           Records
         </Link>
       </div>
@@ -12,7 +12,14 @@ function Navbar() {
       <div className="flex-none">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <Link href="/add_coach">Add Coach</Link>
+            <Link href="/staffs">
+              Staffs
+            </Link>
+          </li>
+          <li>
+            <Link href="/add_coach">
+              Add Coach
+            </Link>
           </li>
           <li>
             <details className="w-32">
@@ -28,9 +35,6 @@ function Navbar() {
                   <Link href="/power_car">Power car</Link>
                 </li>
                 <li>
-                  <Link href="/pantry_car">Pantry car</Link>
-                </li>
-                <li>
                   <Link href="/garib_rath">Garib Rath</Link>
                 </li>
               </ul>
@@ -41,5 +45,3 @@ function Navbar() {
     </div>
   );
 }
-
-export { Navbar };

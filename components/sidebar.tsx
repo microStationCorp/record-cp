@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default async function Sidebar({
+export default function Sidebar({
   children,
   data,
   list_head,
@@ -57,7 +57,8 @@ export default async function Sidebar({
             {data.map((d) => (
               <li key={d.id}>
                 <Link
-                  href={`/${link_prefix}/${d.id}`}
+                  as={`/${link_prefix}/${d.id}`}
+                  href={`/${link_prefix}/[coachId]`}
                   className="uppercase text-base justify-center"
                 >
                   {d.base}-{d.coach_number}-{d.coach_type}

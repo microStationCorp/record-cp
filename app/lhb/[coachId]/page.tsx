@@ -13,7 +13,7 @@ const getdata = async (id: string) => {
   return coach;
 };
 
-export default async function SGCoach({
+export default async function LHBCoach({
   params,
 }: {
   params: { coachId: string };

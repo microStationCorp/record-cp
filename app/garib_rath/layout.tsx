@@ -20,7 +20,7 @@ const getData = async () => {
   return coaches;
 };
 
-export default async function Powerlayout({
+export default async function GRlayout({
   children,
 }: {
   children: React.ReactNode;

@@ -7,6 +7,23 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Role {
+  ACF
+  ACH
+  SRTECH
+  OED
+}
+
+model Staff {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  created_at  DateTime @default(now())
+  name        String
+  designation String
+  ticket_no   String   @unique
+  employee_no String   @unique
+  staff_role  Role     @default(ACF)
+}
+
 model Coaches {
   id           String   @id @default(auto()) @map("_id") @db.ObjectId
   created_at   DateTime @default(now())
@@ -17,11 +34,10 @@ model Coaches {
   p_date       String?
   r_date       String?
 
-  SGCoaches     SGCoaches?
-  LHBCoaches    LHBCoaches?
-  GRCoaches     GRCoaches?
-  PantryCoaches PantryCoaches?
-  PowerCoaches  PowerCoaches?
+  SGCoaches    SGCoaches?
+  LHBCoaches   LHBCoaches?
+  GRCoaches    GRCoaches?
+  PowerCoaches PowerCoaches?
 }
 
 model SGCoaches {
@@ -78,17 +94,30 @@ model GRCoaches {
   coachID String  @unique @db.ObjectId
 }
 
-model PantryCoaches {
-  id         String   @id @default(auto()) @map("_id") @db.ObjectId
-  created_at DateTime @default(now())
-
-  coach   Coaches @relation(fields: [coachID], references: [id])
-  coachID String  @unique @db.ObjectId
-}
-
 model PowerCoaches {
   id         String   @id @default(auto()) @map("_id") @db.ObjectId
   created_at DateTime @default(now())
+
+  sbc_ac          String?
+  rbc             String?
+  ebc             String?
+  erbc            String?
+  battery         String?
+  microcontroller String?
+  net_contactor   String?
+  k44             String?
+  mmr             String?
+  condenser       String?
+  compressor      String?
+  pump            String?
+
+  sbc_power        String?
+  alternator       String?
+  generator        String?
+  cell             String?
+  acb              String?
+  hog_contactor    String?
+  feeder_contactor String?
 
   coach   Coaches @relation(fields: [coachID], references: [id])
   coachID String  @unique @db.ObjectId

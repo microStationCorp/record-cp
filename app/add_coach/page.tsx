@@ -77,7 +77,6 @@ export default function AddCoach() {
                 <option value={undefined}>Pick category</option>
                 <option value={"SG"}>SG</option>
                 <option value={"GR"}>Garib Rath</option>
-                <option value={"PANTRY"}>Pantry Car</option>
                 <option value={"POWER"}>Power Car</option>
                 <option value={"LHB"}>LHB</option>
               </Field>

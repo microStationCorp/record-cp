@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 
-export default function AddCoach({ children }: { children: React.ReactNode }) {
-  return <section>{children}</section>;
+export default async function AddCoachLayout({ children }: { children: React.ReactNode }) {
+  return <>{children}</>;
 }
 
 export const metadata: Metadata = {
