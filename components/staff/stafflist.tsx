@@ -31,11 +31,9 @@ export default function StaffList() {
     { label: "OED", value: Role.OED },
   ];
 
-  const { data, error, isLoading } = useSWR(
-    "/api/staff/get_staff",
-    fetcher,
-    {}
-  );
+  const { data, error, isLoading } = useSWR("/api/staff/get_staff", fetcher, {
+    refreshInterval: 1000,
+  });
 
   if (isLoading)
     return (

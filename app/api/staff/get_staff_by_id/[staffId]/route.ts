@@ -11,5 +11,7 @@ export async function GET(
     },
   });
 
+  // console.log(staff);
+
   return NextResponse.json({ ...staff });
 }
