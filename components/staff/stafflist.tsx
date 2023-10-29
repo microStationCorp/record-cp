@@ -6,6 +6,8 @@ import StaffActionGroup from "./staff_action_group";
 import { Role } from "@prisma/client";
 import { useState } from "react";
 
+export const dynamic = "force-dynamic";
+
 type PStaff = {
   id: string;
   created_at: Date;
@@ -31,9 +33,7 @@ export default function StaffList() {
     { label: "OED", value: Role.OED },
   ];
 
-  const { data, error, isLoading } = useSWR("/api/staff/get_staff", fetcher, {
-    refreshInterval: 1000,
-  });
+  const { data, error, isLoading } = useSWR("/api/staff/get_staff", fetcher);
 
   if (isLoading)
     return (
