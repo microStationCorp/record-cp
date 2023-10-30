@@ -1,2 +1,2 @@
 export const fetcher = (url: string) =>
-  fetch(url, { cache: "force-cache" }).then((res) => res.json());
+  fetch(url, { cache: "no-store" }).then((res) => res.json());
