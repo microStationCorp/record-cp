@@ -6,7 +6,6 @@ import StaffActionGroup from "./staff_action_group";
 import { Role } from "@prisma/client";
 import { useState } from "react";
 
-export const dynamic = "force-dynamic";
 
 type PStaff = {
   id: string;

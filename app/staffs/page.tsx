@@ -1,6 +1,8 @@
 import AddStaffComp from "@/components/staff/add_staff";
 import StaffList from "@/components/staff/stafflist";
 
+export const revalidate = 0;
+
 export default async function Staffs() {
   return (
     <>
