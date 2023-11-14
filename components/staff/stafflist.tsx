@@ -6,6 +6,7 @@ import StaffActionGroup from "./staff_action_group";
 import { Role } from "@prisma/client";
 import { useState } from "react";
 
+export const dynamic = "force-dynamic";
 
 type PStaff = {
   id: string;
@@ -17,7 +18,7 @@ type PStaff = {
   staff_role: string;
 };
 
-export default function StaffList() {
+export default function StaffList({ staffs }: { staffs: PStaff[] }) {
   const [category, setCategory] = useState("ALL");
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,7 +34,7 @@ export default function StaffList() {
   ];
 
   const { data, error, isLoading } = useSWR("/api/staff/get_staff", fetcher, {
-    refreshInterval: 1000,
+    refreshInterval: 10,
   });
 
   if (isLoading)

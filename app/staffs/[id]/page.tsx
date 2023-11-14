@@ -1,5 +1,7 @@
 import StaffDetails from "@/components/staff/staff_detail";
 
+export const dynamic = "force-dynamic";
+
 export default function IndiVidualStaff({
   params,
 }: {
