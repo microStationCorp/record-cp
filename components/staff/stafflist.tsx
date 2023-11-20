@@ -6,8 +6,6 @@ import StaffActionGroup from "./staff_action_group";
 import { Role } from "@prisma/client";
 import { useState } from "react";
 
-export const dynamic = "force-dynamic";
-
 type PStaff = {
   id: string;
   created_at: Date;
@@ -18,7 +16,7 @@ type PStaff = {
   staff_role: string;
 };
 
-export default function StaffList({ staffs }: { staffs: PStaff[] }) {
+export default function StaffList() {
   const [category, setCategory] = useState("ALL");
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {

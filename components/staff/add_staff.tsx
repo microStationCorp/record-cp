@@ -4,7 +4,6 @@ import { addStaff } from "@/lib/staff/addStaff";
 import { Role } from "@prisma/client";
 import { Field, Form, Formik } from "formik";
 import { useState } from "react";
-import { mutate } from "swr";
 import * as yup from "yup";
 
 export default function AddStaffComp() {
