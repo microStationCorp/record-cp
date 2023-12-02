@@ -9,7 +9,7 @@ export default async function Staffs() {
         {/* new staff link */}
         <AddStaffComp />
         {/* staff list */}
-        <StaffList />
+        <StaffList/>
       </div>
     </>
   );

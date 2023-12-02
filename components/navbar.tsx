@@ -37,24 +37,6 @@ export default function Navbar() {
             </li>
           </ul>
         </details>
-
-        {/* <details className="px-1">
-          <summary>Coaches</summary>
-          <ul className="p-2 bg-base-100 z-40">
-            <li>
-              <Link href="/sg">SG</Link>
-            </li>
-            <li>
-              <Link href="/lhb">LHB</Link>
-            </li>
-            <li>
-              <Link href="/power_car">Power car</Link>
-            </li>
-            <li>
-              <Link href="/garib_rath">Garib Rath</Link>
-            </li>
-          </ul>
-        </details> */}
       </div>
     </div>
   );

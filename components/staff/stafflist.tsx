@@ -82,7 +82,7 @@ export default function StaffList() {
                 className="border-2 border-slate-600 rounded-md p-2 sm:p-4 flex justify-between"
               >
                 <div>
-                  <div className="text-xl font-semibold capitalize">
+                  <div className="sm:text-xl text-base font-semibold capitalize">
                     {s.name}
                   </div>
                   <div className="text-sm">Designation : {s.designation}</div>

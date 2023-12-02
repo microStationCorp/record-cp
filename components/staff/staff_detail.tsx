@@ -1,18 +1,4 @@
-import { prisma } from "@/utils/prisma";
-import { notFound } from "next/navigation";
-
-const getStaff = async (id: string) => {
-  try {
-    const staff = await prisma.staff.findFirst({
-      where: {
-        id: id,
-      },
-    });
-    return staff;
-  } catch (error) {
-    return notFound();
-  }
-};
+import { getStaff } from "@/app/action";
 
 export default async function StaffDetails({ id }: { id: string }) {
   const staff = await getStaff(id);
