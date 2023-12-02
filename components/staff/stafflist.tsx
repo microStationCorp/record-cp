@@ -71,27 +71,24 @@ export default function StaffList() {
               ))}
             </div>
           </div>
-
           {data.staffs
             .filter((s: PStaff) =>
               category !== "ALL" ? s.staff_role === category : true
             )
             .map((s: PStaff) => (
-              <div
-                key={s.id}
-                className="border-2 border-slate-600 rounded-md p-2 sm:p-4 flex justify-between"
-              >
-                <div>
-                  <div className="sm:text-xl text-base font-semibold capitalize">
-                    {s.name}
-                  </div>
+              <div key={s.id} className="collapse collapse-plus bg-base-200">
+                <input type="checkbox" />
+                <div className="collapse-title text-base font-medium capitalize">
+                  {s.name}
+                </div>
+                <div className="collapse-content">
                   <div className="text-sm">Designation : {s.designation}</div>
                   <div className="text-sm">Ticket number : {s.ticket_no}</div>
                   <div className="text-sm">
                     Employee Number : {s.employee_no}
                   </div>
+                  <StaffActionGroup staffId={s.id} />
                 </div>
-                <StaffActionGroup staffId={s.id} />
               </div>
             ))}
         </>

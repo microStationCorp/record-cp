@@ -6,7 +6,7 @@ import { EditButton } from "./edit_staff_component";
 
 export default function StaffActionGroup({ staffId }: { staffId: string }) {
   return (
-    <div className="flex flex-col justify-between">
+    <div className="flex justify-between mt-2">
       <GoToStaffButton values={{ staffId }} />
       {/* delete button */}
       <DeleteButton values={{ staffId }} />
