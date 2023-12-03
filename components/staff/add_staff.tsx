@@ -1,6 +1,6 @@
 "use client";
 
-import { addStaff } from "@/lib/staff/addStaff";
+import { addStaffAction } from "@/app/action";
 import { Role } from "@prisma/client";
 import { Field, Form, Formik } from "formik";
 import { useState } from "react";
@@ -26,7 +26,7 @@ export default function AddStaffComp() {
 
       {/* The Modal */}
       {isOpen && (
-        <div className="fixed inset-0 bg-slate-700 bg-opacity-25 backdrop-blur-sm flex justify-center items-center">
+        <div className="fixed inset-0 bg-slate-700 bg-opacity-25 backdrop-blur-sm flex justify-center items-center z-50">
           <div className="w-5/6 md:w-1/2">
             <div className="bg-white p-4 rounded-md ring-1">
               {/* modal title */}
@@ -46,8 +46,10 @@ export default function AddStaffComp() {
                   ticket_no: yup.number().required(),
                   employee_no: yup.number().required(),
                 })}
-                onSubmit={async (values) => {
-                  await addStaff({ values, closeModal });
+                onSubmit={(values) => {
+                  addStaffAction({ ...values }).then((res) => {
+                    if (res) closeModal();
+                  });
                 }}
               >
                 {({ isSubmitting, errors, touched }) => (

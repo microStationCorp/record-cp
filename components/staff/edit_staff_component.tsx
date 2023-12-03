@@ -1,9 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getStaff } from "@/app/action";
+import { getStaff, updateStaffAction } from "@/app/action";
 import { Field, Form, Formik } from "formik";
-import { UpdateStaff } from "@/lib/staff/updateStaff";
 import * as yup from "yup";
 import { Role, Staff } from "@prisma/client";
 
@@ -17,6 +16,7 @@ export function EditButton({
 }) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [staff, setStaff] = useState<Staff>();
+  const [response, setResponse] = useState<boolean>(false);
 
   useEffect(() => {
     getStaff(values.staffId).then((res) => setStaff(res!));
@@ -50,7 +50,7 @@ export function EditButton({
       </button>
 
       {isOpen && (
-        <div className="fixed inset-0 bg-slate-700 bg-opacity-25 backdrop-blur-sm flex justify-center items-center">
+        <div className="fixed inset-0 bg-slate-700 bg-opacity-25 backdrop-blur-sm flex justify-center items-center z-50">
           <div className="w-5/6 md:w-1/2">
             <div className="bg-white p-4 rounded-md ring-1">
               <div className="text-xl font-semibold text-center">
@@ -72,11 +72,14 @@ export function EditButton({
                   ticket_no: yup.number().required(),
                   employee_no: yup.number().required(),
                 })}
-                onSubmit={async (value) => {
-                  await UpdateStaff({
-                    value,
-                    closeModal,
-                    staffId: values.staffId,
+                onSubmit={(value) => {
+                  updateStaffAction({
+                    ...value,
+                    id: values.staffId,
+                  }).then((res) => {
+                    if (res) {
+                      closeModal();
+                    }
                   });
                 }}
               >
