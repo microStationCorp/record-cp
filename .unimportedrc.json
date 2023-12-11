@@ -1,0 +1,39 @@
+{
+  "ignoreUnresolved": [],
+  "ignoreUnused": [
+    "@prisma/client",
+    "@types/node",
+    "@types/react",
+    "@types/react-dom",
+    "@vercel/speed-insights",
+    "autoprefixer",
+    "formik",
+    "next",
+    "react",
+    "react-dom",
+    "tailwindcss",
+    "typescript",
+    "yup"
+  ],
+  "ignoreUnimported": [
+    "app/action.ts",
+    "app/layout.tsx",
+    "app/page.tsx",
+    "app/staffs/[id]/loading.tsx",
+    "app/staffs/[id]/page.tsx",
+    "app/staffs/layout.tsx",
+    "app/staffs/page.tsx",
+    "components/navbar.tsx",
+    "components/staff/add_staff.tsx",
+    "components/staff/delete_staff_component.tsx",
+    "components/staff/edit_staff_component.tsx",
+    "components/staff/staff_action_group.tsx",
+    "components/staff/staff_detail.tsx",
+    "components/staff/stafflist.tsx",
+    "next.config.js",
+    "postcss.config.js",
+    "tailwind.config.js",
+    "utils/prisma.ts",
+    "utils/types.ts"
+  ]
+}
