@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getStaff, updateStaffAction } from "@/app/action";
+import { getStaffById, updateStaffAction } from "@/app/action";
 import { Field, Form, Formik } from "formik";
 import * as yup from "yup";
 import { Role, Staff } from "@prisma/client";
@@ -16,10 +16,9 @@ export function EditButton({
 }) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [staff, setStaff] = useState<Staff>();
-  const [response, setResponse] = useState<boolean>(false);
 
   useEffect(() => {
-    getStaff(values.staffId).then((res) => setStaff(res!));
+    getStaffById(values.staffId).then((res) => setStaff(res!));
   }, []);
 
   const openModal = () => {

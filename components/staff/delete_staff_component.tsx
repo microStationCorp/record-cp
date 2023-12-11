@@ -2,7 +2,6 @@
 
 import { deleteStaffAction } from "@/app/action";
 import { useState } from "react";
-import { mutate } from "swr";
 
 export function DeleteButton({
   values,
@@ -62,8 +61,8 @@ export function DeleteButton({
                 <button
                   className="btn-square bg-red-200 text-red-600 mr-4 rounded-md"
                   onClick={() => {
-                    DeleteFunc(values.staffId);
                     setLoading(true);
+                    DeleteFunc(values.staffId);
                   }}
                   disabled={isLoading}
                 >

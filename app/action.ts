@@ -5,7 +5,7 @@ import { Role } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { notFound } from "next/navigation";
 
-export const getStaff = async (id: string) => {
+export const getStaffById = async (id: string) => {
   try {
     const staff = await prisma.staff.findFirst({
       where: {
@@ -21,6 +21,7 @@ export const getStaff = async (id: string) => {
 export const getAllStaff = async () => {
   try {
     const staff = await prisma.staff.findMany();
+    return staff;
   } catch (error) {
     return notFound();
   }
@@ -47,6 +48,8 @@ export const updateStaffAction = async (value: {
         staff_role: value.staff_role,
       },
     });
+
+    revalidatePath("/staffs");
 
     return true;
   } catch {
@@ -88,6 +91,8 @@ export const addStaffAction = async (values: {
         staff_role: values.staff_role,
       },
     });
+
+    revalidatePath("/staffs");
 
     return true;
   } catch {

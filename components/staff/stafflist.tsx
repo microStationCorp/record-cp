@@ -1,13 +1,11 @@
 "use client";
 
-import { fetcher } from "@/utils/fetcher";
-import useSWR from "swr";
 import StaffActionGroup from "./staff_action_group";
 import { Role } from "@prisma/client";
 import { useState } from "react";
 
 type PStaff = {
-  id: string;
+  id?: string;
   created_at: Date;
   name: string;
   designation: string;
@@ -16,8 +14,10 @@ type PStaff = {
   staff_role: string;
 };
 
-export default function StaffList() {
+export default function StaffList({ staffs }: { staffs: PStaff[] }) {
   const [category, setCategory] = useState("ALL");
+
+  // useEffect(() => {K
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCategory(event.target.value);
@@ -31,22 +31,9 @@ export default function StaffList() {
     { label: "OED", value: Role.OED },
   ];
 
-  const { data, error, isLoading } = useSWR("/api/staff/get_staff", fetcher, {
-    refreshInterval: 10,
-  });
-
-  if (isLoading)
-    return (
-      <div className="fixed inset-0 flex items-center justify-center bg-gray-200 bg-opacity-50">
-        <div className="loading loading-dots loading-lg"></div>
-      </div>
-    );
-
-  if (error) return <div>Error: {error.message}</div>;
-
   return (
     <div className="mt-8 mb-4 mx-2 sm:w-5/6 sm:mx-auto flex flex-col gap-2">
-      {data.staffs.length === 0 ? (
+      {staffs!.length === 0 ? (
         <div className="text-center bg-slate-100 rounded-md p-8 capitalize">
           nothing to show
         </div>
@@ -54,7 +41,7 @@ export default function StaffList() {
         <>
           <div className="flex flex-col sm:flex-row sm:items-center justify-between">
             <div className="capitalize">
-              total number of staffs : {data.staffs.length}
+              total number of staffs : {staffs!.length}
             </div>
             <div className="join">
               {roles.map((role) => (
@@ -71,7 +58,7 @@ export default function StaffList() {
               ))}
             </div>
           </div>
-          {data.staffs
+          {staffs!
             .filter((s: PStaff) =>
               category !== "ALL" ? s.staff_role === category : true
             )
@@ -87,7 +74,7 @@ export default function StaffList() {
                   <div className="text-sm">
                     Employee Number : {s.employee_no}
                   </div>
-                  <StaffActionGroup staffId={s.id} />
+                  <StaffActionGroup staffId={s.id!} />
                 </div>
               </div>
             ))}
